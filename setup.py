@@ -21,7 +21,8 @@ try:
     import py2exe
 except ImportError:
     if len(sys.argv) >= 2 and sys.argv[1] == 'py2exe':
-        print('Cannot import py2exe', file=sys.stderr)
+        # print('Cannot import py2exe', file=sys.stderr)
+        print('Cannot import w9xpopen.exe', file=sys.stderr)
         exit(1)
 
 py2exe_options = {
@@ -135,6 +136,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        # 'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: Implementation',
         'Programming Language :: Python :: Implementation :: CPython',
