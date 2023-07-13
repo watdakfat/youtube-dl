@@ -63,15 +63,15 @@ class _ScopeDict(dict):
             super(_ScopeDict, self).__repr__())
 
 
-class _AVMClass(object):
-    def __init__(self, name_idx, name, static_properties=None):
+class _AVMClass:
+    def __init__(self, name_idx: int, name: str, static_properties: Dict[str, Any] = None):
         self.name_idx = name_idx
         self.name = name
         self.method_names = {}
         self.method_idxs = {}
         self.methods = {}
         self.method_pyfunctions = {}
-        self.static_properties = static_properties if static_properties else {}
+        self.static_properties = static_properties or {}
 
         self.variables = _ScopeDict(self)
         self.constants = {}
@@ -80,14 +80,11 @@ class _AVMClass(object):
         return _AVMClass_Object(self)
 
     def __repr__(self):
-        return '_AVMClass(%s)' % (self.name)
+        return f'_AVMClass({self.name})'
 
-    def register_methods(self, methods):
-        self.method_names.update(methods.items())
-        self.method_idxs.update(dict(
-            (idx, name)
-            for name, idx in methods.items()))
-
+    def register_methods(self, methods: Dict[str, int]):
+        self.method_names.update(methods)
+        self.method_idxs.update({idx: name for name, idx in methods.items()})
 
 class _Multiname(object):
     def __init__(self, kind):

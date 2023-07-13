@@ -51,7 +51,7 @@ class Socks5Auth(object):
 
 class Socks5AddressType(object):
     ATYP_IPV4 = 0x01
-    ATYP_DOMAINNAME = 0x03
+    # ATYP_DOMAINNAME = 0x03
     ATYP_IPV6 = 0x04
 
 
@@ -91,9 +91,9 @@ class Socks5Error(ProxyError):
         0x04: 'Host unreachable',
         0x05: 'Connection refused',
         0x06: 'TTL expired',
-        0x07: 'Command not supported',
+        # 0x07: 'Command not supported',
         0x08: 'Address type not supported',
-        0xFE: 'unknown username or invalid password',
+        # 0xFE: 'unknown username or invalid password',
         0xFF: 'all offered authentication methods were rejected'
     }
 

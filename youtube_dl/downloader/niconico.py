@@ -34,7 +34,7 @@ class NiconicoDmcFD(FileDownloader):
         success = download_complete = False
         timer = [None]
         heartbeat_lock = threading.Lock()
-        heartbeat_url = heartbeat_info_dict['url']
+        # heartbeat_url = heartbeat_info_dict['url']
         heartbeat_data = heartbeat_info_dict['data'].encode()
         heartbeat_interval = heartbeat_info_dict.get('interval', 30)
 
