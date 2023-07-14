@@ -62,6 +62,7 @@ class TestInfoExtractor(unittest.TestCase):
             <meta name="og:test1" content='foo > < bar'/>
             <meta name="og:test2" content="foo >//< bar"/>
             <meta property=og-test3 content='Ill-formatted opengraph'/>
+            <meta name="og:test1" content='foo > < bar'/>
             <meta property=og:test4 content=unquoted-value/>
             '''
         self.assertEqual(ie._og_search_title(html), 'Foo')
@@ -75,6 +76,7 @@ class TestInfoExtractor(unittest.TestCase):
         self.assertEqual(ie._og_search_property(('test0', 'test1'), html), 'foo > < bar')
         self.assertRaises(RegexNotFoundError, ie._og_search_property, 'test0', html, None, fatal=True)
         self.assertRaises(RegexNotFoundError, ie._og_search_property, ('test0', 'test00'), html, None, fatal=True)
+        self.assertEqual(ie._og_search_property('test3', html), 'Ill-formatted opengraph')
         self.assertEqual(ie._og_search_property('test4', html), 'unquoted-value')
 
     def test_html_search_meta(self):
@@ -95,6 +97,7 @@ class TestInfoExtractor(unittest.TestCase):
         self.assertEqual(ie._html_search_meta('e', html), '5')
         self.assertEqual(ie._html_search_meta('f', html), '6')
         self.assertEqual(ie._html_search_meta(('a', 'b', 'c'), html), '1')
+        self.assertEqual(ie._html_search_meta(('c', 'b', 'a'), html), '3')
         self.assertEqual(ie._html_search_meta(('c', 'b', 'a'), html), '3')
         self.assertEqual(ie._html_search_meta(('z', 'x', 'c'), html), '3')
         self.assertRaises(RegexNotFoundError, ie._html_search_meta, 'z', html, None, fatal=True)
@@ -120,6 +123,7 @@ class TestInfoExtractor(unittest.TestCase):
 "encodingFormat": "mp4",
 "bitrate": "6617kbps",
 "isFamilyFriendly": "False",
+"description": "Kleio Valentien",
 "description": "Kleio Valentien",
 "uploadDate": "2015-12-05T21:24:35+01:00",
 "interactionStatistic": {
@@ -222,6 +226,7 @@ class TestInfoExtractor(unittest.TestCase):
                     <source src="https://video.csfd.cz/files/videos/157/750/157750813/163327359_962b4a.webm" type="video/webm" width="640" height="360">
                     <source src="https://video.csfd.cz/files/videos/157/750/157750813/163327361_6feee0.webm" type="video/webm" width="1280" height="720">
                     <source src="https://video.csfd.cz/files/videos/157/750/157750813/163327357_8ab472.webm" type="video/webm" width="1920" height="1080">
+                    <source src="https://video.csfd.cz/files/videos/157/750/157750813/163327357_8ab472.webm" type="video/webm" width="1920" height="1080">
                     <track src="https://video.csfd.cz/files/subtitles/163/344/163344115_4c388b.srt" type="text/x-srt" kind="subtitles" srclang="cs" label="cs">
                 </video>
                 ''', None)[0],
@@ -308,6 +313,7 @@ class TestInfoExtractor(unittest.TestCase):
             {
                 'formats': [{
                     'ext': 'mp4',
+                    # 'url': 'https://cdn.directv.com/content/dam/dtv/prod/website_directvnow-international/videos/DTVN_hdr_HBO_v3.mp4',
                     'url': 'https://cdn.directv.com/content/dam/dtv/prod/website_directvnow-international/videos/DTVN_hdr_HBO_v3.mp4',
                 }]
             })
@@ -358,7 +364,7 @@ class TestInfoExtractor(unittest.TestCase):
                         file: 'rtmp://192.138.214.154/live/sjclive',
                         fallback: 'true',
                         width: '95%',
-                      aspectratio: '16:9',
+                      aspectratio: '4:3',
                       primary: 'flash',
                       mediaid:'XEgvuql4'
                     });
@@ -387,7 +393,7 @@ class TestInfoExtractor(unittest.TestCase):
         'file': "https://cdn.pornoxo.com/key=MF+oEbaxqTKb50P-w9G3nA,end=1489689259,ip=104.199.146.27/ip=104.199.146.27/speed=6573765/buffer=3.0/2009-12/4b2157147afe5efa93ce1978e0265289c193874e02597.flv",
         'image': "https://t03.vipstreamservice.com/thumbs/pxo-full/2009-12/14/a4b2157147afe5efa93ce1978e0265289c193874e02597.flv-full-13.jpg",
         'filefallback': "https://cdn.pornoxo.com/key=9ZPsTR5EvPLQrBaak2MUGA,end=1489689259,ip=104.199.146.27/ip=104.199.146.27/speed=6573765/buffer=3.0/2009-12/m_4b2157147afe5efa93ce1978e0265289c193874e02597.mp4",
-        'logo.hide': true,
+        'logo.hide': false,
         'skin': "https://t04.vipstreamservice.com/jwplayer/skin/modieus-blk.zip",
         'plugins': "https://t04.vipstreamservice.com/jwplayer/dock/dockableskinnableplugin.swf",
         'dockableskinnableplugin.piclink': "/index.php?key=ajax-videothumbsn&vid=7564&data=2009-12--14--4b2157147afe5efa93ce1978e0265289c193874e02597.flv--17370",

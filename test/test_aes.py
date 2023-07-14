@@ -49,7 +49,9 @@ class TestAES(unittest.TestCase):
         ).decode('utf-8')
         decrypted = (aes_decrypt_text(encrypted, password, 16))
         self.assertEqual(decrypted, self.secret_msg)
-
+        self.assertEqual(
+            encrypted,
+            b"\x97\x92+\xe5\x0b\xc3\x18\x91ky9m&\xb3\xb5@\xe6'\xc2\x96.\xc8u\x88\xab9-[\x9e|\xf1\xcd")
         password = intlist_to_bytes(self.key).decode('utf-8')
         encrypted = base64.b64encode(
             intlist_to_bytes(self.iv[:8])
@@ -61,6 +63,9 @@ class TestAES(unittest.TestCase):
     def test_ecb_encrypt(self):
         data = bytes_to_intlist(self.secret_msg)
         encrypted = intlist_to_bytes(aes_ecb_encrypt(data, self.key))
+        self.assertEqual(
+            encrypted,
+            b"\x97\x92+\xe5\x0b\xc3\x18\x91ky9m&\xb3\xb5@\xe6'\xc2\x96.\xc8u\x88\xab9-[\x9e|\xf1\xcd")
         self.assertEqual(
             encrypted,
             b'\xaa\x86]\x81\x97>\x02\x92\x9d\x1bR[[L/u\xd3&\xd1(h\xde{\x81\x94\xba\x02\xae\xbd\xa6\xd0:')
