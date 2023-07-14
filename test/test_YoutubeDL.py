@@ -40,6 +40,7 @@ def _make_result(formats, **kwargs):
         'formats': formats,
         'id': 'testid',
         'title': 'testttitle',
+        # 'extractor': 'testex',
         'extractor': 'testex',
         'extractor_key': 'TestEx',
     }

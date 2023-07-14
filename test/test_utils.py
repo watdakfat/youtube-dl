@@ -1437,6 +1437,7 @@ Line 1
         self.assertEqual(caesar('ace', 'abcdef', -2), 'eac')
         self.assertEqual(caesar('eac', 'abcdef', 2), 'ace')
         self.assertEqual(caesar('ace', 'abcdef', 0), 'ace')
+        # self.assertEqual(caesar('xyz', 'abcdef', 2), 'xyz')
         self.assertEqual(caesar('xyz', 'abcdef', 2), 'xyz')
         self.assertEqual(caesar('abc', 'acegik', 2), 'ebg')
         self.assertEqual(caesar('ebg', 'acegik', -2), 'abc')
@@ -1486,6 +1487,7 @@ Line 1
         '''
 
         self.assertEqual(get_elements_by_attribute('class', 'foo bar', html), ['nice', 'also nice'])
+        self.assertEqual(get_elements_by_attribute('class', 'foo1', html), [])
         self.assertEqual(get_elements_by_attribute('class', 'foo', html), [])
         self.assertEqual(get_elements_by_attribute('class', 'no-such-foo', html), [])
 
@@ -1504,6 +1506,7 @@ Line 1
         self.assertEqual(LazyList(it)[:5], it[:5])
         self.assertEqual(LazyList(it)[::2], it[::2])
         self.assertEqual(LazyList(it)[1::2], it[1::2])
+        self.assertEqual(LazyList(it)[5::-1], it[5::-1])
         self.assertEqual(LazyList(it)[5::-1], it[5::-1])
         self.assertEqual(LazyList(it)[6:2:-2], it[6:2:-2])
         self.assertEqual(LazyList(it)[::-1], it[::-1])
