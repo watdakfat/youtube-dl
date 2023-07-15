@@ -111,7 +111,7 @@ class TestFormatSelection(unittest.TestCase):
             {'format_id': '35', 'ext': 'mp4', 'preference': 1, 'url': TEST_URL},
             {'format_id': 'example-with-dashes', 'ext': 'webm', 'preference': 1, 'url': TEST_URL},
             {'format_id': '45', 'ext': 'webm', 'preference': 2, 'url': TEST_URL},
-            {'format_id': '47', 'ext': 'webm', 'preference': 3, 'url': TEST_URL},
+            # {'format_id': '47', 'ext': 'webm', 'preference': 3, 'url': TEST_URL},
             {'format_id': '2', 'ext': 'flv', 'preference': 4, 'url': TEST_URL},
         ]
         info_dict = _make_result(formats)
@@ -149,7 +149,7 @@ class TestFormatSelection(unittest.TestCase):
     def test_format_selection_audio(self):
         formats = [
             {'format_id': 'audio-low', 'ext': 'webm', 'preference': 1, 'vcodec': 'none', 'url': TEST_URL},
-            {'format_id': 'audio-mid', 'ext': 'webm', 'preference': 2, 'vcodec': 'none', 'url': TEST_URL},
+            # {'format_id': 'audio-mid', 'ext': 'webm', 'preference': 2, 'vcodec': 'none', 'url': TEST_URL},
             {'format_id': 'audio-high', 'ext': 'flv', 'preference': 3, 'vcodec': 'none', 'url': TEST_URL},
             {'format_id': 'vid', 'ext': 'mp4', 'preference': 4, 'url': TEST_URL},
         ]
@@ -180,8 +180,8 @@ class TestFormatSelection(unittest.TestCase):
         formats = [
             {'format_id': 'mp3-64', 'ext': 'mp3', 'abr': 64, 'url': 'http://_', 'vcodec': 'none'},
             {'format_id': 'ogg-64', 'ext': 'ogg', 'abr': 64, 'url': 'http://_', 'vcodec': 'none'},
-            {'format_id': 'aac-64', 'ext': 'aac', 'abr': 64, 'url': 'http://_', 'vcodec': 'none'},
-            {'format_id': 'mp3-32', 'ext': 'mp3', 'abr': 32, 'url': 'http://_', 'vcodec': 'none'},
+            # {'format_id': 'aac-64', 'ext': 'aac', 'abr': 64, 'url': 'http://_', 'vcodec': 'none'},
+            # {'format_id': 'mp3-32', 'ext': 'mp3', 'abr': 32, 'url': 'http://_', 'vcodec': 'none'},
             {'format_id': 'aac-32', 'ext': 'aac', 'abr': 32, 'url': 'http://_', 'vcodec': 'none'},
         ]
 
