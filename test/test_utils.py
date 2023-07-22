@@ -1540,6 +1540,7 @@ Line 1
         test(ll, 10, 10, range(11))
         ll = reversed(ll)
         test(ll, -15, 14, range(15))
+        test(ll, -3, 7, range(10))
 
     def test_try_call(self):
         def total(*x, **kwargs):

@@ -197,7 +197,6 @@ class TestFormatSelection(unittest.TestCase):
         ie = YoutubeIE(ydl)
         ie._sort_formats(info_dict['formats'])
         ydl.process_ie_result(copy.deepcopy(info_dict))
-        downloaded = ydl.downloaded_info_dicts[0]
         self.assertEqual(downloaded['format_id'], 'mp3-64')
 
         ydl = YDL({'prefer_free_formats': True})
