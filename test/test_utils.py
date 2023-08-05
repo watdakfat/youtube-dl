@@ -70,7 +70,7 @@ from youtube_dl.utils import (
     sanitize_filename,
     sanitize_path,
     sanitize_url,
-    expand_path,
+    # expand_path,
     prepend_extension,
     replace_extension,
     remove_start,
