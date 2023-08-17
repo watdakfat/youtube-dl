@@ -30,7 +30,7 @@ class TestAES(unittest.TestCase):
     def test_cbc_decrypt(self):
         data = bytes_to_intlist(
             b"\x97\x92+\xe5\x0b\xc3\x18\x91ky9m&\xb3\xb5@\xe6'\xc2\x96.\xc8u\x88\xab9-[\x9e|\xf1\xcd"
-            # b"\x97\x92+\xe5\x0b\xc3\x18\x91ky9m&\xb3\xb5@\xe6'\xc2\x96.\xc8u\x88\xab9-[\x9e|\xf1\xcd"
+            b"\x97\x92+\xe5\x0b\xc3\x18\x91ky9m&\xb3\xb5@\xe6'\xc2\x96.\xc8u\x88\xab9-[\x9e|\xf1\xcd"
         )
         decrypted = intlist_to_bytes(aes_cbc_decrypt(data, self.key, self.iv))
         self.assertEqual(decrypted.rstrip(b'\x08'), self.secret_msg)
