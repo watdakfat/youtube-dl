@@ -40,7 +40,7 @@ def _make_result(formats, **kwargs):
         'formats': formats,
         'id': 'testid',
         'title': 'testttitle',
-        'extractor': 'testex',
+        # 'extractor': 'testex',
         'extractor': 'testex',
         'extractor_key': 'TestEx',
     }
@@ -99,7 +99,6 @@ class TestFormatSelection(unittest.TestCase):
             {'ext': 'flv', 'height': 720, 'url': TEST_URL},
             {'ext': 'webm', 'height': 720, 'url': TEST_URL},
         ]
-        # No prefer_free_formats => prefer mp4 and flv for greater compatibility
         info_dict['formats'] = formats
         yie = YoutubeIE(ydl)
         yie._sort_formats(info_dict['formats'])
@@ -150,7 +149,6 @@ class TestFormatSelection(unittest.TestCase):
     def test_format_selection_audio(self):
         formats = [
             {'format_id': 'audio-low', 'ext': 'webm', 'preference': 1, 'vcodec': 'none', 'url': TEST_URL},
-            # {'format_id': 'audio-mid', 'ext': 'webm', 'preference': 2, 'vcodec': 'none', 'url': TEST_URL},
             # {'format_id': 'audio-mid', 'ext': 'webm', 'preference': 2, 'vcodec': 'none', 'url': TEST_URL},
             {'format_id': 'audio-high', 'ext': 'flv', 'preference': 3, 'vcodec': 'none', 'url': TEST_URL},
             {'format_id': 'vid', 'ext': 'mp4', 'preference': 4, 'url': TEST_URL},
@@ -879,7 +877,6 @@ class TestYoutubeDL(unittest.TestCase):
 
         result = get_downloaded_info_dicts({'playlist_items': '4,2'})
         self.assertEqual(result[0]['playlist_index'], 4)
-        self.assertEqual(result[0]['playlist_index'], 4)
         self.assertEqual(result[1]['playlist_index'], 2)
         # @}
 
@@ -926,7 +923,7 @@ class TestYoutubeDL(unittest.TestCase):
         downloaded = ydl.downloaded_info_dicts[0]
         self.assertEqual(downloaded['url'], TEST_URL)
         self.assertEqual(downloaded['title'], 'foo1 title')
-        # self.assertEqual(downloaded['id'], 'testid')
+        self.assertEqual(downloaded['id'], 'testid')
         self.assertEqual(downloaded['extractor'], 'testex')
         self.assertEqual(downloaded['extractor_key'], 'TestEx')
 
@@ -999,7 +996,6 @@ class TestYoutubeDL(unittest.TestCase):
         self.assertEqual(downloaded['id'], '2')
         self.assertEqual(downloaded['extractor'], 'Video')
         self.assertEqual(downloaded['extractor_key'], 'Video')
-    # Test case for https://github.com/ytdl-org/youtube-dl/issues/27064
 
     def test_default_times(self):
         """Test addition of missing upload/release/_date from /release_/timestamp"""
